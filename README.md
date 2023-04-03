@@ -1,2 +1,2 @@
 # konnect-contracts
-The Konnect Protocol
+The Konnect Protocol.
