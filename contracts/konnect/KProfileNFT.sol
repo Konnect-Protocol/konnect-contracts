@@ -6,6 +6,7 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721URIStorageUpgradeable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import {Constants} from "../libs/Constants.sol";
 import {DataTypes} from "../libs/DataTypes.sol";
@@ -24,6 +25,7 @@ UUPSUpgradeable,
 OwnableUpgradeable,
 PausableUpgradeable,
 ERC721Upgradeable,
+ERC721URIStorageUpgradeable,
 IKProfileNFT,
 KProfileNFTStorage
 {
@@ -89,6 +91,7 @@ KProfileNFTStorage
         _tokenIds.increment();
         uint256 newTokenId = _tokenIds.current();
         _safeMint(params.to, newTokenId);
+        _setTokenURI(newTokenId, params.metadata);
 
         //save
         _profileById[newTokenId].identity = params.identity;
@@ -96,6 +99,20 @@ KProfileNFTStorage
         _profileIdHash[identityHash] = newTokenId;
         _metadataById[newTokenId] = params.metadata;
         return newTokenId;
+    }
+
+    function tokenURI(uint256 tokenId)
+    public
+    view
+    override(ERC721Upgradeable, ERC721URIStorageUpgradeable)
+    returns (string memory)
+    {
+        return super.tokenURI(tokenId);
+    }
+
+    function _burn(uint256 tokenId) internal override(ERC721Upgradeable, ERC721URIStorageUpgradeable) {
+        require(false, "IDENTITY_USED");
+        super._burn(tokenId);
     }
 
     function _checkKProfileIdentity(string memory identity) internal pure {

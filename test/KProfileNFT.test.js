@@ -2,40 +2,37 @@ const {expect} = require('chai');
 const {ethers, upgrades} = require('hardhat');
 const {address} = require("hardhat/internal/core/config/config-validation");
 
-let kprofileNft;
-let currentSigner;
 
 describe('kprofileNft', function () {
-    it('current signer', async function () {
+
+    let kprofileNft;
+    let currentSigner;
+
+    beforeEach(async function () {
         const accounts = await ethers.getSigners();
         currentSigner = accounts[0].address;
         console.log("singer is", currentSigner);
-    })
 
-    it('deploys', async function () {
         const KprofileNft = await ethers.getContractFactory('KProfileNFT');
+        const profile = (await upgrades.deployProxy(
+            KprofileNft,
+            [accounts[0].address, "Konnect profile NFT", "KP"],
+            {kind: 'uups'}));
         //Load from specified contract address
-        kprofileNft = await KprofileNft.attach(
-            "0x879798845F001c3093f4Ff62a6035b3e7ee2b8ec" // The deployed contract address
+        kprofileNft = await profile.attach(
+            "0xB48129fE4E6dFF1cd2f27c7dfB2d0a2FBfEE4C5B" // The deployed contract address
         );
-        // kprofileNft = (await upgrades.deployProxy(
-        //     KprofileNft,
-        //     [currentSigner, "Konnect profile NFT", "KP"],
-        //     {kind: 'uups'}));
+        console.log(kprofileNft.address)
+    });
 
-        console.log("kprofile address", kprofileNft.address);
-        console.log("kprofile name ", await kprofileNft.name());
-        console.log("kprofile nft symbol ", await kprofileNft.symbol());
-    })
     it('mint kprofile', async function () {
-        const params = {
-            to: currentSigner,
-            identity: "edddd",
-            avatar: "",
-            metadata: "",
-            operator: ""
-        };
-        const x = await kprofileNft.mintKProfile(currentSigner, "eddd", "", "", currentSigner);
+        const x = await kprofileNft.mintKProfile(
+            currentSigner,
+            "xxxx",
+            "ipfs://QmPbxeGcXhYQQNgsC6a36dDyYUcHgMLnGKnF8pVFmGsvqi",
+            "https://ipfs.io/ipfs/QmbiMPbptQQrBud7RK1HBqedLBHyaDxkDehbXeWgabmhYx?filename=1",
+            currentSigner
+        );
         console.log("tokenId is:", x);
     })
 
