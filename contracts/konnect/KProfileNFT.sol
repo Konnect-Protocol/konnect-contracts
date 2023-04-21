@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.14;
 
-import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "../token/ERC721Upgradeable.sol";
+import "../token/extensions/ERC721URIStorageUpgradeable.sol";
+import "../access/OwnableUpgradeable.sol";
+import "../security/PausableUpgradeable.sol";
+import "../utils/Counters.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721URIStorageUpgradeable.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import {Constants} from "../libs/Constants.sol";
 import {DataTypes} from "../libs/DataTypes.sol";
 import {KProfileNFTStorage} from "../storages/KProfileNFTStorage.sol";
