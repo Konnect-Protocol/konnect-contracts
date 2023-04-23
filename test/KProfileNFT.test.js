@@ -30,9 +30,9 @@ describe('kprofileNft', function () {
     it('mint kprofile', async function () {
         const x = await kprofileNft.mintKProfile(
             currentSigner,
-            "zzz07",
+            "zzz08",
             "xx",
-            "https://ipfs.io/ipfs/QmbiMPbptQQrBud7RK1HBqedLBHyaDxkDehbXeWgabmhYx?filename=1",
+            "https://ipfs.io/ipfs/QmYDank1RhN2LzUFPfbfuQYswDrKsnGh8gNR3koXWKMNDD?filename=3",
             currentSigner
         );
         console.log("mint hash:", x);
