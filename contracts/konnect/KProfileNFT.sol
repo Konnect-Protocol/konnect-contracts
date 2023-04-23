@@ -87,7 +87,7 @@ KProfileNFTStorage
 
         bytes32 identityHash = keccak256(bytes(params.identity));
         require(!_exists(_profileIdHash[identityHash]), "IDENTITY_USED");
-//        require(!_minted[params.to], "ALREADY_OWNED");
+        //        require(!_minted[params.to], "ALREADY_OWNED");
         //mint
         _tokenIds.increment();
         uint256 newTokenId = _tokenIds.current();
@@ -110,6 +110,13 @@ KProfileNFTStorage
     returns (string memory)
     {
         return super.tokenURI(tokenId);
+    }
+
+    function name()
+    public
+    view
+    override returns (string memory) {
+        return super.name();
     }
 
     function _burn(uint256 tokenId) internal override(ERC721Upgradeable, ERC721URIStorageUpgradeable) {
