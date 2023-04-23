@@ -87,6 +87,7 @@ KProfileNFTStorage
 
         bytes32 identityHash = keccak256(bytes(params.identity));
         require(!_exists(_profileIdHash[identityHash]), "IDENTITY_USED");
+        require(!_minted[identityHash], "ALREADY_OWNED");
         //mint
         _tokenIds.increment();
         uint256 newTokenId = _tokenIds.current();
@@ -98,6 +99,7 @@ KProfileNFTStorage
         _profileById[newTokenId].avatar = params.avatar;
         _profileIdHash[identityHash] = newTokenId;
         _metadataById[newTokenId] = params.metadata;
+        _minted[params.to] = true;
         return newTokenId;
     }
 

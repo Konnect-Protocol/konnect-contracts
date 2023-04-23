@@ -12,7 +12,7 @@ module.exports = {
             accounts: [`0xeb52eaace349abc04d3613f7c855d133cb530000524fa01395983705d18e2a0f`]
         },
         ll:{
-            url: `http://127.0.0.1:7545/`,
+            url: `http://127.0.0.1:8545/`,
             accounts: [process.env.ACCOUNT_LL_LOCAL]
         },
         mumbai: {
