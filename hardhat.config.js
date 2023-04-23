@@ -17,7 +17,7 @@ module.exports = {
         },
         mumbai: {
             url: `https://rpc-mumbai.maticvigil.com`,
-            accounts: [`f0ffae59bef8cf729858f3361c209b9cfd8295d028418adadd0bf2184c864e69`]
+            accounts: [`0xf0ffae59bef8cf729858f3361c209b9cfd8295d028418adadd0bf2184c864e69`]
         }
     },
     solidity: "0.8.18"

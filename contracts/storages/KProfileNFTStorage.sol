@@ -6,7 +6,7 @@ import {DataTypes} from "../libs/DataTypes.sol";
 abstract contract KProfileNFTStorage {
 
     mapping(bytes32 => uint256) internal _profileIdHash;
-    mapping(bytes32 => bool) internal _minted;
+    mapping(address => bool) internal _minted;
     mapping(uint256 => DataTypes.KProfileStruct) internal _profileById;
     mapping(uint256 => string) internal _metadataById;
 }
